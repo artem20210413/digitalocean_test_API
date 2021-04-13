@@ -1,0 +1,21 @@
+{% extends 'block.html' %}
+{% block title %}
+Активные сервера
+{% endblock %}
+
+{% block body %}
+{% if droplets.droplets %}
+{% for el in droplets.droplets %}
+<div class="bg-light p-4 rounded mt-2" >
+
+    <h1><samp>Name Server:</samp> {{el.name}}</h1>
+    <p class="lead"><samp>ID:</samp>{{el.id}}</p>
+    <p class="lead"><samp>Data:</samp>{{el.created_at}}</p>
+    <a class="btn btn-sm btn-outline-danger  " href="/droplets/delete/{{el.id}}" role="button">Закрыть сервер</a>
+  </div>
+{% endfor %}
+{% else  %}
+<h1>У Вас еще нет активных капель =(</h1>
+
+{% endif %}
+{% endblock %}

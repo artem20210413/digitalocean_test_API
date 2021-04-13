@@ -1,0 +1,24 @@
+{% extends 'block.html' %}
+{% block title %}
+Создание запроса
+{% endblock %}
+
+{% block body %}
+
+<div class ="mt-5">
+    <h1>Перевод текста:</h1>
+    <form method="post">
+        <h3>Введите слово для перевода:</h3><br>
+        <input type = "text" name="title" id="title" class="from-control" placeholder="Кот"> <br>
+        <!--<textarea name="intro" id="intro" class="from-control" placeholder="Сюда текст первый" ></textarea> <br>
+        <textarea name="text" id="text" class="from-control" placeholder="Сюда текст второй"></textarea> <br>-->
+        <br><input type="submit"  class="btn btn-success" value="Перевести" > <br>
+        <br><h6>Перевод слова <b>{{translation.Heading}} </b>является: <b>{{translation.Translation}}</b></h6>
+    </form>
+</div>
+<!--<form method="POST">
+    Asset Tag:<br>
+    <input type="text" name="tag"><br>
+    <input type="submit" value="Submit">
+</form>-->
+{% endblock %}
