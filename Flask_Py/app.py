@@ -4,7 +4,7 @@ from flask_sqlalchemy import  SQLAlchemy
 from  datetime import  datetime
 import requests
 URL = 'https://api.digitalocean.com/v2/droplets'
-KEY = '189ca8959a7d2b1357705e359632e4ba33666e088c1d8f3bb833a989b98757c1'
+KEY = ''
 
 
 def get_all_digital():
