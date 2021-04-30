@@ -1,21 +1,16 @@
 from flask import request, Flask, render_template, url_for,  redirect
-import digitalocean
 #from flask import request
 from flask_sqlalchemy import  SQLAlchemy
 from  datetime import  datetime
 import requests
 URL = 'https://api.digitalocean.com/v2/droplets'
 KEY = ''
-#189ca8959a7d2b1357705e359632e4ba33666e088c1d8f3bb833a989b98757c1
+
 
 def get_all_digital():
-
-
-
-    headers_auth = {'Content-Type': 'application/json', 'Authorization': 'Bearer ' + KEY}
+    headers_auth = {'Content-Type': 'application/json','Authorization': 'Bearer  ' + KEY};
     r = requests.get(URL, headers=headers_auth)
     info = r.json()
-    print(r.url)
     try:
         print(r.status_code)
         return info
@@ -24,7 +19,7 @@ def get_all_digital():
 
 
 def delete_digital(id):
-    headers_auth = {'Content-Type': 'application/json', 'Authorization': 'Bearer ' + KEY}
+    headers_auth = {'Content-Type': 'application/json', 'Authorization': 'Bearer ' + KEY};
     r = requests.delete(URL + "/" + id, headers=headers_auth)
     info = r.json()
     try:
@@ -33,18 +28,29 @@ def delete_digital(id):
     except:
         print('ERROR!')
 
-
 def post_digital(name):
-    droplet = digitalocean.Droplet(token=KEY,
-                                   name="Test",
-                                   region='nyc3',  # New York 2
-                                   image='ubuntu-20-04-x64',  # Ubuntu 20.04 x64
-                                   size_slug='s-1vcpu-1gb',  # 1GB RAM, 1 vCPU
-                                   backups=True)
+    headers_auth = {'Content-Type': 'application/json', 'Authorization': 'Bearer ' + KEY};
 
-    #r = requests.post(URL, headers=headers_auth, params=params)
-    print(droplet.status)
-    return droplet.status
+    params = {
+     "name": name,
+     "region": "nyc3",
+     "size": "s-1vcpu-1gb",
+     "image": "ubuntu-16-04-x64",
+     "ssh_keys": [29963105],
+     "backups": False,
+     "ipv6": True,
+     "user_data": None,
+     "private_networking": None,
+     "volumes": None,
+     "tags": ["web"]
+        }
+    r = requests.post(URL, headers=headers_auth, params=params)
+    info = r.json()
+    try:
+        print(r.status_code)
+        return r.status_code
+    except:
+        print('ERROR!')
 
 
 def get_trenslation(text):
